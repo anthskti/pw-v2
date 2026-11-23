@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# Anthony Pham — Portfolio v2
 
-## Getting Started
+A redesign of Anthony's personal portfolio, combining a dial-based homepage with custom backgrounds and light/VFX interactions inspired by his video editing work.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Next.js App Router, React, TypeScript, Tailwind CSS 4, Bun, and React Compiler. Deploy as a standard Next.js project on Vercel. No application backend is planned. The earlier Cloudflare/static-export plan has been superseded.
+
+## Development
+
+```sh
+bun install --frozen-lockfile
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000. To validate a production build:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+bun run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Application code lives in `src/app`. Read the installed Next.js documentation and root agent instructions before implementation.
 
-## Learn More
+## Project documentation
 
-To learn more about Next.js, take a look at the following resources:
+- [AGENTS.md](AGENTS.md): agreed direction, personal references, content sources, and working constraints.
+- [Working plan](docs/plan.md): staged collaboration, review checkpoints, progress, and design decisions.
+- [Content map](docs/content-map.md): source inventory, proposed content destinations, and migration issues.
+- [Technical redesign plan](docs/redesign-plan.md): supporting implementation detail.
+- [Deployment](docs/deployment.md): Vercel configuration and preview workflow.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Content and artwork
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Migrate existing portfolio content and assets from `C:\Users\phama\Work\pw-main`, adapting them to the new presentation. Anthony will create custom backgrounds for the sections. Temporary artwork should remain identifiable as a development placeholder.
 
-## Deploy on Vercel
+The first visual milestone is the logo/About scene with an accessible dial and persistent résumé/contact links. The design should remain readable and usable on mobile, with keyboard controls and reduced-motion support.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Use Vercel's Next.js preset, `bun run build`, and the framework's default output directory. Do not configure a static export or disable image optimization globally for hosting compatibility. See [deployment notes](docs/deployment.md).
+
+Parts 1 and 2 have a buildable implementation: migrated About/link data and assets now feed a wider opening composition with reusable Tailwind-styled components and a static section dial. Production builds and desktop/mobile browser checks pass. The composition is ready for Anthony's feedback; interactive navigation and custom backgrounds follow. No deployment has been performed.

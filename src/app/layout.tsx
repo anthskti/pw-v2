@@ -8,7 +8,7 @@ const redHatDisplay = Red_Hat_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Anthony Pham — Software Engineer",
+  title: "Anthony Pham -Software Engineer",
   description:
     "Anthony Pham is a software engineer based in Toronto, Canada, focused on website development, AI, and data analysis.",
 };

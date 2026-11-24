@@ -5,7 +5,7 @@
   color-scheme: light;
   --surface: #f5f5f5;
   --content-primary: #151515;
-  --content-secondary: #575757;
+  --content-secondary: #3f3f46 ;
   --line: #d3d3d3;
   --focus: #343434;
 }
@@ -15,7 +15,7 @@
     color-scheme: dark;
     --surface: #0d0d0d;
     --content-primary: #eeeeee;
-    --content-secondary: #b2b2b2;
+    --content-secondary: #e7e5e4;
     --line: #343434;
     --focus: #ededed;
   }

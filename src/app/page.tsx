@@ -9,10 +9,7 @@ export default function Home() {
         aria-label="Anthony Pham Portfolio"
       >
         <p className="font-semibold text-foreground">Anthony Pham</p>
-        <span
-          aria-hidden="true"
-          className="mx-1 mb-[0.12em] inline-block size-0.5 shrink-0 rounded-full bg-zinc-500"
-        />
+        <span className="px-1">{"|"}</span>
         <p>Toronto, Canada</p>
       </header>
       <PortfolioScene />

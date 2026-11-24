@@ -1,15 +1,3 @@
-export const about = {
-  heading: "Hey, I'm Anthony (or Anth)",
-  introduction:
-    "I'm a Software Engineer based in Toronto, Canada, focused on website development, AI, and data analysis.",
-  outsideWork:
-    "Outside of engineering, I've enjoyed doing calisthenics, playing piano(ish), cooking, video editing (kind of retired), playing video games, Clash Royale (11,500 trophies), and chess (peaked at 906 elo).",
-  affiliations: [
-    { field: "Software Engineering", organization: "UofTHacks", href: "https://uofthacks.com/" },
-    { field: "Content Creation", organization: "Blossom Social", href: "https://www.instagram.com/anthassets" },
-    { field: "Computer Science", organization: "LSE at York University", href: "https://www.yorku.ca/" },
-  ],
-} as const;
 
 export const siteLinks = [
   { label: "Resume", href: "/anthony_pham_resume.pdf", newTab: true },

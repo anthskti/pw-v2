@@ -2,7 +2,6 @@
 
 import useSceneNavigation from "@/hooks/useSceneNavigation";
 import SectionDial from "@/components/scene/SectionDial";
-import SectionNavigation from "@/components/scene/SectionNavigation";
 import SceneContent from "@/components/scene/SceneContent";
 import { normalize, SECTION_ANGLE_STEP, stops } from "@/components/scene/scene-sections";
 
@@ -37,11 +36,7 @@ export default function PortfolioScene() {
           })}
         </div>
 
-        <div className="scene-content">
-          <SceneContent key={selected.id} sectionId={selected.id} />
-        </div>
-
-        {/* Clips the rotated dial square without clipping reading content. */}
+        {/* Dial before content so mobile document flow places it at the top. Desktop stays absolute. */}
         <div className="scene-dial-clip">
           <div className="scene-dial-region">
             <SectionDial
@@ -53,6 +48,10 @@ export default function PortfolioScene() {
               pointerHandlers={navigation.pointerHandlers}
             />
           </div>
+        </div>
+
+        <div className="scene-content">
+          <SceneContent key={selected.id} sectionId={selected.id} />
         </div>
       </div>
     </main>

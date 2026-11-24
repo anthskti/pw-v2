@@ -16,12 +16,13 @@ export const selectedEdits = [
   },
 ] as const;
 
+/** Short dial captions — keep these tight for the mobile arc. */
 export const sectionMetadata = {
-  about: "Software Engineer",
-  projects: "Personal and Hackathon Projects",
-  writing: "My entries on life",
+  about: "",
+  projects: "My Works",
+  writing: "Notes",
   edits: "VFX · sakuti",
-  contact: "Connect + Social",
+  contact: "Social",
 } as const;
 
 export type SceneSectionId =

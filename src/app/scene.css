@@ -11,11 +11,13 @@
   --dial-center-x: 82%;
   --dial-center-x-compact: 88%;
 
-  --dial-region-height: max(10rem, calc(100svh / 4.5));
-
-  --dial-mobile-size: 780px;
-  --dial-mobile-left: max(-298px, calc(25% - 380px));
-  --dial-mobile-offset: calc(-150px + max(0px, 2rem - 32px));
+  /* Mobile lazy-Susan: bottom arc peek — active low/center, neighbors above L/R.
+     Smaller size + orbit = tighter cluster. Raise region-height if meta clips. */
+  --dial-region-height: max(11.5rem, 26svh);
+  --dial-mobile-size: min(480px, 125vw);
+  --dial-mobile-offset: calc(
+    var(--dial-region-height) * 0.7 - var(--dial-mobile-size) * 0.78
+  );
 
   --scene-stage-mobile-height: max(40rem, calc(100svh - 10rem));
   --scene-page-gutter: clamp(24px, 4.45vw, 64px);
@@ -139,53 +141,85 @@
   }
 
   .scene-stage {
+    display: flex;
+    flex-direction: column;
     height: auto;
     min-height: var(--scene-stage-mobile-height);
-    padding-bottom: calc(var(--dial-region-height) + 1rem);
   }
 
   .scene-content {
     max-width: none;
-    padding-top: 2rem;
+    padding-top: 0rem;
   }
 
   .scene-dial-clip {
-    display: contents;
+    position: relative;
+    inset: auto;
+    z-index: 20;
+    overflow: visible;
+    pointer-events: none;
   }
 
   .scene-dial-region {
+    position: relative;
     top: auto;
-    bottom: 0;
-    left: 0;
+    bottom: auto;
+    left: auto;
     z-index: 20;
     aspect-ratio: auto;
     width: 100%;
     height: var(--dial-region-height);
     overflow: hidden;
     transform: none;
+    pointer-events: auto;
   }
 
   .scene-dial {
     inset: auto;
     top: var(--dial-mobile-offset);
-    left: var(--dial-mobile-left);
+    left: 50%;
     width: var(--dial-mobile-size);
-    transform: none;
+    transform: translateX(-50%);
   }
 
   .scene-dial-rotor {
-    rotate: 90deg;
+    /* Bottom of the wheel faces the reader (lazy Susan). */
+    rotate: -90deg;
   }
 
   .scene-dial-label {
     left: var(--mobile-left);
     top: var(--mobile-top);
-    width: 180px;
+    width: 6.75rem;
     white-space: normal;
-    text-align: left;
-    font-size: 1.5rem;
-    line-height: 1.25;
+    text-align: center;
+    font-size: 1.125rem;
+    line-height: 1.2;
     transform: translate(-50%, -50%)
-      rotate(calc(var(--mobile-tilt) - 90deg));
+      rotate(calc(var(--mobile-tilt) + 90deg));
+  }
+
+  .scene-dial-label[aria-current="page"] {
+    font-size: 1.25rem;
+  }
+
+  .scene-dial-meta {
+    display: block;
+    max-width: 6.75rem;
+    margin-inline: auto;
+    margin-top: 0.2rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.02em;
+  }
+
+  .scene-dial-label[aria-current="page"] .scene-dial-meta {
+    font-size: 0.7rem;
+  }
+
+  .scene-dial-label picture {
+    width: 2.75rem;
+    min-width: 2.75rem;
+    max-width: 2.75rem;
+    margin-inline: auto;
   }
 }

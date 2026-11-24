@@ -14,6 +14,11 @@ const ACCELERATION_SHARE = 1 / 3;
 const DECELERATION_SHARE = 2 / 3;
 const DRAG_MOVE_THRESHOLD_PX = 6;
 
+/** Matches scene.css mobile breakpoint (lazy-Susan dial inverts drag feel). */
+const isMobileScene = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(width < 56rem)").matches;
+
 const nearestIndex = (angle: number) =>
   Math.round(normalize(angle) / SECTION_ANGLE_STEP) % stops.length;
 
@@ -151,7 +156,7 @@ export default function useSceneNavigation() {
       event.preventDefault();
       if (wheelLockedRef.current) return;
       wheelLockedRef.current = true;
-      const direction = event.deltaY > 0 ? 1 : -1;
+      const direction = (event.deltaY > 0 ? 1 : -1) * (isMobileScene() ? -1 : 1);
       snapTo(
         (nearestIndex(rotationRef.current) + stops.length + direction) %
           stops.length,
@@ -200,7 +205,8 @@ export default function useSceneNavigation() {
       DRAG_MOVE_THRESHOLD_PX
     )
       drag.moved = true;
-    if (drag.moved) setAngle(drag.angle - delta);
+    // Mobile lazy-Susan orbit is mirrored; invert delta so drag follows the finger.
+    if (drag.moved) setAngle(drag.angle + (isMobileScene() ? delta : -delta));
   };
   const finishDrag = (event: PointerEvent<HTMLDivElement>) => {
     const drag = dragRef.current;

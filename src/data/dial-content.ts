@@ -1,23 +1,3 @@
-export const selectedProjects = [
-  {
-    title: "Clearup",
-    description:
-      "A skincare routine planner built to help people find a place to start.",
-    href: "https://www.clearup.skin/",
-  },
-  {
-    title: "Spacetime Dojo",
-    description: "A real-time multiplayer boxing game built at Cal Hacks v13.",
-    href: "https://youtu.be/TXRZh1yjFeg",
-  },
-  {
-    title: "Voicely",
-    description:
-      "A voice-over practice app that grades performances against video scenes.",
-    href: "https://voicely-lake.vercel.app/",
-  },
-] as const;
-
 export const selectedEdits = [
   {
     title: "Over The Moon · Bae Suzy",
@@ -64,7 +44,7 @@ export const scenePreviews: Record<
     title: "Projects",
     description:
       "A selection of recent software projects across web development, AI, and interactive experiences.",
-    action: "View projects",
+    action: "View all projects",
   },
   writing: {
     title: "Writing",

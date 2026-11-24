@@ -25,7 +25,7 @@ export default function FeaturedProjects() {
 
   return (
     <div className="w-full">
-      <div className="hidden grid-cols-[6.5rem_minmax(0,1fr)] items-start gap-2 min-[56rem]:grid">
+      <div className="hidden grid-cols-[6.5rem_minmax(0,1fr)] items-start gap-2 md:grid">
         <div role="group" aria-label="Choose a featured project" className="grid gap-2">
           {featuredProjects.map((project) => (
             <button
@@ -33,7 +33,7 @@ export default function FeaturedProjects() {
               type="button"
               aria-pressed={project.id === selectedId}
               onClick={() => setSelectedId(project.id)}
-              className={`min-h-16 min-w-0 rounded-lg px-2 py-3 text-left transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus)] motion-reduce:transition-none ${project.id === selectedId ? "bg-[color-mix(in_srgb,var(--content-primary)_8%,transparent)] text-foreground" : "text-secondary hover:bg-[color-mix(in_srgb,var(--content-primary)_4%,transparent)] hover:text-foreground"}`}
+              className={`min-h-16 min-w-0 rounded-lg px-2 py-3 text-left transition-colors duration-200 focus-ring motion-reduce:transition-none ${project.id === selectedId ? "bg-[color-mix(in_srgb,var(--content-primary)_8%,transparent)] text-foreground" : "text-secondary hover:bg-[color-mix(in_srgb,var(--content-primary)_4%,transparent)] hover:text-foreground"}`}
             >
               <span className={`block text-base leading-snug ${project.id === selectedId ? "font-semibold underline underline-offset-4" : "font-medium"}`}>{project.title}</span>
               <span className="mt-1 block text-sm text-secondary">{project.category}</span>
@@ -61,7 +61,7 @@ export default function FeaturedProjects() {
           <ul aria-label={`${selectedProject.title} project links`} className="mt-2 mb-0 flex min-h-11 list-none flex-wrap items-center gap-x-4 p-0 text-sm font-semibold">
             {links.map((link) => (
               <li key={link.label}>
-                <a href={link.href} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center underline decoration-[var(--line)] underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus)]">
+                <a href={link.href} target="_blank" rel="noreferrer" className="text-link">
                   {link.label}<span className="sr-only"> (opens in a new tab)</span>
                 </a>
               </li>
@@ -70,7 +70,7 @@ export default function FeaturedProjects() {
         </section>
       </div>
 
-      <div className="min-[56rem]:hidden">
+      <div className="md:hidden">
         <div className="flex h-[clamp(9rem,47vw,12.5rem)] w-full items-center justify-center overflow-hidden border border-[var(--line)] bg-[var(--surface)]">
           <Image
             key={selectedProject.id}
@@ -92,7 +92,7 @@ export default function FeaturedProjects() {
                 aria-label={`Show ${project.title}`}
                 aria-pressed={selected}
                 onClick={() => setSelectedId(project.id)}
-                className={`min-h-11 min-w-0 border p-1 text-left transition-[border-color,opacity] duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus)] motion-reduce:transition-none ${selected ? "border-[var(--content-primary)]" : "border-[var(--line)] opacity-85 hover:opacity-100"}`}
+                className={`min-h-11 min-w-0 border p-1 text-left transition-[border-color,opacity] duration-200 focus-ring motion-reduce:transition-none ${selected ? "border-[var(--content-primary)]" : "border-[var(--line)] opacity-85 hover:opacity-100"}`}
               >
                 <span className="flex h-12 items-center justify-center overflow-hidden bg-[var(--surface)]">
                   <Image
@@ -111,14 +111,13 @@ export default function FeaturedProjects() {
         </div>
       </div>
 
-      <section aria-live="polite" aria-atomic="true" className="mt-3 min-w-0 min-[56rem]:hidden">
+      <section aria-live="polite" aria-atomic="true" className="mt-3 min-w-0 md:hidden">
         <h2 className="m-0 text-xl font-semibold leading-tight">{selectedProject.title}</h2>
         <p className="mt-1 mb-0 text-base leading-snug text-secondary">{selectedProject.summary}</p>
-        <ul aria-label={`${selectedProject.title} technologies`} className="mt-2 mb-0 hidden list-none flex-wrap gap-x-2 gap-y-0.5 p-0 text-sm leading-relaxed text-secondary min-[56rem]:flex">
+        <ul aria-label={`${selectedProject.title} technologies`} className="mt-2 mb-0 hidden list-none flex-wrap gap-x-2 gap-y-0.5 p-0 text-sm leading-relaxed text-secondary md:flex">
           {selectedProject.technologies.map((technology) => <li key={technology}>{technology}</li>)}
         </ul>
-        <details className="mt-2 text-sm text-secondary min-[56rem]:hidden">
-          <summary className="min-h-11 cursor-pointer py-2 font-semibold text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus)]">Built with</summary>
+        <details className="mt-2 text-sm text-secondary md:hidden">
           <ul aria-label={`${selectedProject.title} technologies`} className="mt-1 mb-0 flex list-none flex-wrap gap-x-2 gap-y-0.5 p-0 leading-relaxed">
             {selectedProject.technologies.map((technology) => <li key={technology}>{technology}</li>)}
           </ul>
@@ -126,7 +125,7 @@ export default function FeaturedProjects() {
         <ul aria-label={`${selectedProject.title} project links`} className="mt-2 mb-0 flex min-h-11 list-none flex-wrap items-center gap-x-4 gap-y-0 p-0 text-sm font-semibold">
           {links.map((link) => (
             <li key={link.label}>
-              <a href={link.href} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center underline decoration-[var(--line)] underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus)]">
+              <a href={link.href} target="_blank" rel="noreferrer" className="text-link">
                 {link.label}<span className="sr-only"> (opens in a new tab)</span>
               </a>
             </li>

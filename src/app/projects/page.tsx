@@ -11,21 +11,21 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <div className="relative isolate min-h-screen min-h-[100svh] px-[clamp(24px,4.45vw,64px)] pt-7 pb-6 max-[38rem]:px-[22px]">
+    <div className="relative isolate min-h-screen min-h-[100svh] px-[clamp(24px,4.45vw,64px)] pt-7 pb-6 max-sm:px-[22px]">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_78%_48%,rgba(145,145,145,0.06),transparent_48%)]"
       />
       <div className="mx-auto flex min-h-[calc(100svh-3.25rem)] w-full max-w-[1600px] flex-col">
-        <header className="flex flex-wrap items-baseline justify-between gap-5 max-[38rem]:items-start" aria-label="Site identity and navigation">
-          <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 text-sm leading-[1.4] text-secondary max-[38rem]:gap-x-2.5">
+        <header className="flex flex-wrap items-baseline justify-between gap-5 max-sm:items-start" aria-label="Site identity and navigation">
+          <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 text-sm leading-[1.4] text-secondary max-sm:gap-x-2.5">
             <p className="m-0 font-semibold text-foreground">Anthony Pham</p>
             <p className="m-0">Toronto, Canada</p>
           </div>
           <Link
             href="/#projects"
             scroll={false}
-            className="inline-flex min-h-11 shrink-0 items-center text-sm font-medium text-foreground underline decoration-secondary decoration-1 underline-offset-[0.2em] hover:decoration-2 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-[var(--focus)] focus-visible:outline-offset-4"
+            className="inline-flex min-h-11 shrink-0 items-center text-sm font-medium text-foreground underline decoration-secondary decoration-1 underline-offset-[0.2em] hover:decoration-2 focus-visible:rounded-sm focus-ring"
           >
             Back to scene
           </Link>

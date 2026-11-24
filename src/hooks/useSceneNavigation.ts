@@ -2,13 +2,23 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { PointerEvent } from "react";
-import { normalize, stops } from "@/components/scene/scene-sections";
+import {
+  normalize,
+  SECTION_ANGLE_STEP,
+  stops,
+} from "@/components/scene/scene-sections";
+
+const ROTATION_DURATION_MS = 900;
+const WHEEL_COOLDOWN_MS = 420;
+const ACCELERATION_SHARE = 1 / 3;
+const DECELERATION_SHARE = 2 / 3;
+const DRAG_MOVE_THRESHOLD_PX = 6;
 
 const nearestIndex = (angle: number) =>
-  Math.round(normalize(angle) / 72) % stops.length;
+  Math.round(normalize(angle) / SECTION_ANGLE_STEP) % stops.length;
 
 const shortestTarget = (angle: number, index: number) => {
-  const base = index * 72;
+  const base = index * SECTION_ANGLE_STEP;
   return angle + (((((base - angle) % 360) + 540) % 360) - 180);
 };
 
@@ -63,17 +73,16 @@ export default function useSceneNavigation() {
         return;
       }
       const started = performance.now();
-      const accelerationShare = 1 / 3;
       const tick = (now: number) => {
-        const t = Math.min(1, (now - started) / 900);
+        const t = Math.min(1, (now - started) / ROTATION_DURATION_MS);
         // Reach peak speed after one third, then ease out over the remaining two thirds.
         // Weight each segment so both position and speed match at the handoff.
         const eased =
-          t < accelerationShare
-            ? accelerationShare * Math.pow(t / accelerationShare, 3)
+          t < ACCELERATION_SHARE
+            ? ACCELERATION_SHARE * Math.pow(t / ACCELERATION_SHARE, 3)
             : 1 -
-              (1 - accelerationShare) *
-                Math.pow((1 - t) / (1 - accelerationShare), 3);
+              DECELERATION_SHARE *
+                Math.pow((1 - t) / DECELERATION_SHARE, 3);
         const value = from + (to - from) * eased;
         rotationRef.current = value;
         setRotation(value);
@@ -151,7 +160,7 @@ export default function useSceneNavigation() {
       );
       wheelTimerRef.current = window.setTimeout(() => {
         wheelLockedRef.current = false;
-      }, 420);
+      }, WHEEL_COOLDOWN_MS);
     };
     dial.addEventListener("wheel", handleWheel, { passive: false });
     return () => {
@@ -186,7 +195,10 @@ export default function useSceneNavigation() {
       (Math.atan2(Math.sin(current - initial), Math.cos(current - initial)) *
         180) /
       Math.PI;
-    if (Math.hypot(event.clientX - drag.x, event.clientY - drag.y) > 6)
+    if (
+      Math.hypot(event.clientX - drag.x, event.clientY - drag.y) >
+      DRAG_MOVE_THRESHOLD_PX
+    )
       drag.moved = true;
     if (drag.moved) setAngle(drag.angle - delta);
   };

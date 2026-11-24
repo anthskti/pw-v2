@@ -41,7 +41,7 @@ export default function DetailDialog({ title, triggerLabel, children }: DetailDi
 
   return (
     <>
-      <button ref={triggerRef} type="button" onClick={openDialog} className="mt-4 inline-flex min-h-11 items-center rounded-sm text-sm font-semibold underline decoration-[var(--line)] underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus)]">{triggerLabel}</button>
+      <button ref={triggerRef} type="button" onClick={openDialog} className="text-link mt-4 rounded-sm text-sm font-semibold">{triggerLabel}</button>
       <dialog
         ref={dialogRef}
         aria-labelledby={titleId}
@@ -73,7 +73,7 @@ export default function DetailDialog({ title, triggerLabel, children }: DetailDi
         <div className="p-6 sm:p-9">
           <div className="sticky top-0 z-10 -mx-6 -mt-6 mb-7 flex items-start justify-between gap-5 border-b border-[var(--line)] bg-background px-6 pt-6 pb-4 sm:-mx-9 sm:-mt-9 sm:px-9 sm:pt-9">
             <h2 id={titleId} className="m-0 text-2xl font-semibold leading-tight tracking-[-0.025em] sm:text-3xl">{title}</h2>
-            <button type="button" onClick={closeDialog} autoFocus aria-label="Close details" className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-full border border-[var(--line)] text-xl leading-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus)]">×</button>
+            <button type="button" onClick={closeDialog} autoFocus aria-label="Close details" className="focus-ring inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-full border border-[var(--line)] text-xl leading-none">×</button>
           </div>
           {children}
         </div>

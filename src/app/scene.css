@@ -1,0 +1,191 @@
+/* Portfolio scene layout knobs — tweak these to rebalance content vs dial. */
+:root {
+  --scene-min-height: calc(100svh - 140px);
+  --scene-max-width: 1800px;
+
+  --scene-content-max: 56rem;
+  --scene-content-width: calc(47.4% + 96px);
+  --scene-content-top: 1rem;
+
+  --dial-size: min(840px, 58.333vw, 92svh, max(280px, calc(150svh - 440px)));
+  --dial-center-x: 82%;
+  --dial-center-x-compact: 88%;
+
+  --dial-region-height: max(10rem, calc(100svh / 4.5));
+
+  --dial-mobile-size: 780px;
+  --dial-mobile-left: max(-298px, calc(25% - 380px));
+  --dial-mobile-offset: calc(-150px + max(0px, 2rem - 32px));
+
+  --scene-stage-mobile-height: max(40rem, calc(100svh - 10rem));
+  --scene-page-gutter: clamp(24px, 4.45vw, 64px);
+}
+
+.scene-main {
+  position: relative;
+  margin-inline: auto;
+  min-height: var(--scene-min-height);
+  width: 100%;
+  max-width: var(--scene-max-width);
+}
+
+.scene-stage {
+  position: relative;
+  min-height: var(--scene-min-height);
+}
+
+.scene-content {
+  position: relative;
+  z-index: 10;
+  max-width: min(var(--scene-content-max), var(--scene-content-width));
+  padding-top: var(--scene-content-top);
+  overflow-wrap: anywhere;
+}
+
+.scene-dial-clip {
+  pointer-events: none;
+  position: absolute;
+  inset-block: -2.5rem;
+  inset-inline: calc(var(--scene-page-gutter) * -1);
+  z-index: 20;
+  overflow: clip;
+}
+
+.scene-dial-region {
+  pointer-events: auto;
+  position: absolute;
+  top: 50%;
+  left: calc(var(--dial-center-x) - var(--dial-size) / 2);
+  aspect-ratio: 1;
+  width: var(--dial-size);
+  overflow: visible;
+  transform: translateY(-50%);
+}
+
+.scene-dial {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: 1;
+  width: 100%;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+  border-radius: 9999px;
+}
+
+.scene-dial:active {
+  cursor: grabbing;
+}
+
+.scene-dial:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -4px;
+}
+
+.scene-dial-rotor {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: 1;
+  width: 100%;
+  border-radius: 9999px;
+  rotate: var(--desktop-turn);
+}
+
+.scene-dial-label {
+  position: absolute;
+  left: var(--desktop-left);
+  top: var(--desktop-top);
+  z-index: 10;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  width: 180px;
+  transform: translate(-50%, -50%) rotate(var(--desktop-label-rotation));
+  cursor: pointer;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  text-align: left;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.scene-dial-label:hover {
+  color: var(--content-primary);
+}
+
+.scene-dial-label:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+@media (width >= 56rem) {
+  .scene-content {
+    z-index: 30;
+  }
+
+  .scene-dial-label {
+    font-size: 1.25rem;
+  }
+}
+
+@media (width < 75rem) {
+  .scene-dial-region {
+    left: calc(var(--dial-center-x-compact) - var(--dial-size) / 2);
+  }
+}
+
+@media (width < 56rem) {
+  .scene-main {
+    min-height: 0;
+  }
+
+  .scene-stage {
+    height: auto;
+    min-height: var(--scene-stage-mobile-height);
+    padding-bottom: calc(var(--dial-region-height) + 1rem);
+  }
+
+  .scene-content {
+    max-width: none;
+    padding-top: 2rem;
+  }
+
+  .scene-dial-clip {
+    display: contents;
+  }
+
+  .scene-dial-region {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+    aspect-ratio: auto;
+    width: 100%;
+    height: var(--dial-region-height);
+    overflow: hidden;
+    transform: none;
+  }
+
+  .scene-dial {
+    inset: auto;
+    top: var(--dial-mobile-offset);
+    left: var(--dial-mobile-left);
+    width: var(--dial-mobile-size);
+    transform: none;
+  }
+
+  .scene-dial-rotor {
+    rotate: 90deg;
+  }
+
+  .scene-dial-label {
+    left: var(--mobile-left);
+    top: var(--mobile-top);
+    width: 180px;
+    white-space: normal;
+    text-align: left;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    transform: translate(-50%, -50%)
+      rotate(calc(var(--mobile-tilt) - 90deg));
+  }
+}
